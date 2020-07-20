@@ -43,12 +43,39 @@
                     <p class="ciudad"><i class="fas fa-map-marker-alt"></i>Guanajuato, MX</p>
                 </div>
                 <div class="nombre-sitio">
-                    <h1 class="no-margin">GdlWebcamP</h1>
+                    <a href="/">
+                        <h1 class="no-margin">GdlWebcamP</h1>
+                    </a>
                     <p class="slogan">La mejor conferencia de <span>diseño web</span></p>
                 </div>
             </div>
         </div>
     </header>
+
+    <div class="barra">
+        <div class="contenedor contenido-barra">
+            <div class="barra-logo">
+                <div class="imagen">
+                    <a href="/"><img src="img/logo.svg" alt="Logo"></a>
+                </div>
+
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="navegacion">
+                <nav>
+                    <a href="conferencia.html">Conferencia</a>
+                    <a href="#">Calendario</a>
+                    <a href="#">Invitados</a>
+                    <a href="registro.html">Reservaciones</a>
+                </nav>
+            </div>
+        </div>
+    </div>
 
     <section class="seccion contenedor">
         <h2 class="separador justify-center">Registro de Usuarios</h2>
@@ -239,12 +266,12 @@
                         <div class="orden">
                             <label for="camisa_evento">Camisa del Evento $10 <small>(promocion 7% de
                                     descuento)</small></label>
-                            <input type="number" min="0" id="camisa_evento" size="3" placeholder="0">
+                            <input type="number" min="0" id="camisas" size="3" placeholder="0">
                         </div>
                         <div class="orden">
                             <label for="etiquetas">Paquete de 10 etiquetas $2 <small>(HTML5, CSS3, JavaScript,
                                     Angular)</small></label>
-                            <input type="number" min="0" id="camisa_evento" size="3" placeholder="0">
+                            <input type="number" min="0" id="etiquetas" size="3" placeholder="0">
                         </div>
                         <div class="orden">
                             <label for="regalo">Seleccione un regalo </label>
@@ -261,11 +288,11 @@
 
                     <div class="total">
                         <p>Resumen:</p>
-                        <div class="lista-productos">
+                        <div id="lista-productos" class="justify-left">
 
                         </div>
                         <p>Total:</p>
-                        <div id="suma-total">
+                        <div id="suma-total" class="justify-left">
 
                         </div>
                         <input type="submit" id="btnRegistro" class="btn btn-primario">
@@ -305,9 +332,15 @@
         <p class="copyrigth">Todos los Derechos Reservados <span>GdlWebcamp</span> 2020 &copy;</p>
     </footer>
 
+    <script src="js/jquery-3.5.1.js"></script>
     <script src="js/vendor/modernizr-3.11.2.min.js"></script>
     <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <!--Plugin para lettering-->
+    <script src="js/plugins/jquery.lettering.js"></script>
+
+    <!-- Paginas -->
+    <script src="js/pages/header.js"></script>
+    <script src="js/pages/registro.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>

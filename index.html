@@ -21,6 +21,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Oswald:wght@300;400;700&family=PT+Sans:wght@400;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <link rel="stylesheet" href="css/main.css">
 
     <meta name="theme-color" content="#fafafa">
@@ -43,7 +44,9 @@
                     <p class="ciudad"><i class="fas fa-map-marker-alt"></i>Guanajuato, MX</p>
                 </div>
                 <div class="nombre-sitio">
-                    <h1 class="no-margin">GdlWebcamP</h1>
+                    <a href="/">
+                        <h1 class="no-margin">GdlWebcamP</h1>
+                    </a>
                     <p class="slogan">La mejor conferencia de <span>diseño web</span></p>
                 </div>
             </div>
@@ -54,7 +57,7 @@
         <div class="contenedor contenido-barra">
             <div class="barra-logo">
                 <div class="imagen">
-                    <img src="img/logo.svg" alt="Logo">
+                    <a href="/"><img src="img/logo.svg" alt="Logo"></a>
                 </div>
 
                 <div class="hamburger">
@@ -66,7 +69,7 @@
 
             <div class="navegacion">
                 <nav>
-                    <a href="#">Conferencia</a>
+                    <a href="conferencia.html">Conferencia</a>
                     <a href="#">Calendario</a>
                     <a href="#">Invitados</a>
                     <a href="registro.html">Reservaciones</a>
@@ -107,7 +110,7 @@
                         <a href="#seminarios"><i class="fas fa-university"></i>Seminarios</a>
                     </nav>
 
-                    <ul id="talleres" class="info-curso ocultar">
+                    <ul id="talleres" class="info-curso">
                         <li class="detalle-evento">
                             <h3>HTML5, CSS, JavaScript</h3>
                             <p><i class="far fa-clock"></i>16:00 hrs</p>
@@ -123,6 +126,41 @@
                         </li>
                         <div class="justify-rigth"><a href="#" class="btn btn-primario">Ver Todos</a></div>
                     </ul>
+
+                    <ul id="conferencias" class="info-curso">
+                        <li class="detalle-evento">
+                            <h3>Como ser Freelancer</h3>
+                            <p><i class="far fa-clock"></i>20:00 hrs</p>
+                            <p><i class="far fa-calendar"></i>12 de Dic</p>
+                            <p><i class="fas fa-user"></i>Gregorio Sanchez</p>
+                        </li>
+
+                        <li class="detalle-evento">
+                            <h3>Tecnologías del Futuro</h3>
+                            <p><i class="far fa-clock"></i>21:00 hrs</p>
+                            <p><i class="far fa-calendar"></i>10 de Dic</p>
+                            <p><i class="fas fa-user"></i>Susana Distancia</p>
+                        </li>
+                        <div class="justify-rigth"><a href="#" class="btn btn-primario">Ver Todos</a></div>
+                    </ul>
+
+                    <ul id="seminarios" class="info-curso">
+                        <li class="detalle-evento">
+                            <h3>UI/UX para móviles</h3>
+                            <p><i class="far fa-clock"></i>16:00 hrs</p>
+                            <p><i class="far fa-calendar"></i>10 de Dic</p>
+                            <p><i class="fas fa-user"></i>Jarol García</p>
+                        </li>
+
+                        <li class="detalle-evento">
+                            <h3>Mecanografía de 0 a experto</h3>
+                            <p><i class="far fa-clock"></i>15:00 hrs</p>
+                            <p><i class="far fa-calendar"></i>11 de Dic</p>
+                            <p><i class="fas fa-user"></i>Camilo Quintanilla</p>
+                        </li>
+                        <div class="justify-rigth"><a href="#" class="btn btn-primario">Ver Todos</a></div>
+                    </ul>
+
                 </div>
             </div>
         </div>
@@ -163,21 +201,21 @@
         <div class="contenedor">
             <ul class="resumen-evento">
                 <li>
-                    <p class="numero">6</p>
+                    <p class="numero"></p>
                     <p>Invitados</p>
                 </li>
                 <li>
-                    <p class="numero">15</p>
+                    <p class="numero"></p>
                     <p>Talleres</p>
                 </li>
 
                 <li>
-                    <p class="numero">3</p>
+                    <p class="numero"></p>
                     <p>Días</p>
                 </li>
 
                 <li>
-                    <p class="numero">9</p>
+                    <p class="numero"></p>
                     <p>Conferencias</p>
                 </li>
             </ul>
@@ -266,7 +304,7 @@
 
     <div class="newsletter parallax seccion center-content">
         <div class="contenido contenedor">
-            <p>Registrate el Nesletter</p>
+            <p>Registrate al Newsletter</p>
             <h3>GdlWebcamp</h3>
             <a href="registro.html" class="btn btn-white btn-transparent">Registro</a>
         </div>
@@ -277,21 +315,21 @@
             <h2 class="justify-center separador">Faltan</h2>
             <ul class="cuenta-regresiva">
                 <li>
-                    <p class="numero">80</p>
+                    <p class="numero" id="dias"></p>
                     <p>Días</p>
                 </li>
                 <li>
-                    <p class="numero">15</p>
+                    <p class="numero" id="horas"></p>
                     <p>15 horas</p>
                 </li>
 
                 <li>
-                    <p class="numero">5</p>
+                    <p class="numero" id="minutos"></p>
                     <p>Minutos</p>
                 </li>
 
                 <li>
-                    <p class="numero">30</p>
+                    <p class="numero" id="segundos"></p>
                     <p>Segundos</p>
                 </li>
             </ul>
@@ -327,9 +365,21 @@
         <p class="copyrigth">Todos los Derechos Reservados <span>GdlWebcamp</span> 2020 &copy;</p>
     </footer>
 
+    <script src="js/jquery-3.5.1.js"></script>
     <script src="js/vendor/modernizr-3.11.2.min.js"></script>
     <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
+    <!--Plugin animar numeros-->
+    <script src="js/plugins/jquery.animateNumber.js"></script>
+    <!--Plugin para contador regresivo-->
+    <script src="js/plugins/jquery.countdown.js"></script>
+    <!--Plugin para lettering-->
+    <script src="js/plugins/jquery.lettering.js"></script>
+    <!--Plugin para mapas-->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <!-- Paginas -->
+    <script src="js/pages/header.js"></script>
+    <script src="js/pages/index.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>
