@@ -9,27 +9,24 @@
 
         <?php
             //Realizar la conexion a la base de datos
-           try {
-               require_once 'includes/functions/db_conection.php';
-               $sql = 'select id_evento,
-                        e.nombre as evento,
-                        icono,
-                        fecha,
-                        hora,
-                        i.nombre,
-                        apellido,
-                        categoria
-                from evento e
-                join categoria c on e.id_categoria = c.id_categoria
-                join invitado i on e.id_invitado = i.id_invitado
-                order by fecha';
-               $result = $conn->query($sql);
-               if (!$result) {
-                   echo 'Error al ejecutar la consulta';
-               }
-           } catch (\Exception $ex) {
-               echo $ex->getMessage();
-           }
+            require_once 'includes/functions/db_conection.php';
+            $sql = 'select id_evento,
+                 e.nombre as evento,
+                 icono,
+                 fecha,
+                 hora,
+                 i.nombre,
+                 apellido,
+                 categoria
+            from evento e
+            join categoria c on e.id_categoria = c.id_categoria
+            join invitado i on e.id_invitado = i.id_invitado
+            order by fecha';
+            $result = $conn->query($sql);
+            if (!$result) {
+                echo 'Error al ejecutar la consulta';
+            }
+
         ?>
 
         <div class="calendario">
@@ -53,35 +50,34 @@
             // Fin del bloque para el while del calendario
             ?>
 
-            <?php
-               foreach ($calendario as $dia => $lista_eventos) {?>
-            <h3>
-                <i class='fa fa-calendar'></i>
-                <?php
-                        setlocale(LC_TIME, 'es_ES.UTF-8');
-                        echo strftime('%A %d, de %B del %Y', strtotime($dia));
-                    ?>
-            </h3>
+            <?php foreach ($calendario as $dia => $lista_eventos) {?>
+                <h3>
+                    <i class='fa fa-calendar'></i>
+                    <?php
+                            setlocale(LC_TIME, 'es_ES.UTF-8');
+                            echo strftime('%A %d, de %B del %Y', strtotime($dia));
+                        ?>
+                </h3>
 
-            <div class="flex-resp space-unset">
-                <?php foreach ($lista_eventos as $evento) { ?>
-                <div class="dia justify-center">
-                    <p class='titulo'><?php echo $evento['titulo']; ?></p>
-                    <p class='hora'>
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <?php echo $evento['fecha'].' '.$evento['hora']; ?>
-                    </p>
-                    <p>
-                        <i class="<?php echo $evento['icono']; ?>" aria-hidden="true"></i>
-                        <?php echo $evento['categoria']; ?>
-                    </p>
-                    <p class='hora'>
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <?php echo $evento['invitado']; ?>
-                    </p>
+                <div class="flex-resp space-unset">
+                    <?php foreach ($lista_eventos as $evento) { ?>
+                        <div class="dia justify-center">
+                            <p class='titulo'><?php echo $evento['titulo']; ?></p>
+                            <p class='hora'>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <?php echo $evento['fecha'].' '.$evento['hora']; ?>
+                            </p>
+                            <p>
+                                <i class="<?php echo $evento['icono']; ?>" aria-hidden="true"></i>
+                                <?php echo $evento['categoria']; ?>
+                            </p>
+                            <p class='hora'>
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <?php echo $evento['invitado']; ?>
+                            </p>
+                        </div>
+                    <?php } //fin foreach de evento?>
                 </div>
-                <?php } //fin foreach de evento?>
-            </div>
 
             <?php } //fin foreach del calendario?>
 

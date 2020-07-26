@@ -265,9 +265,6 @@
     <?php include_once 'includes/templates/footer.php' ?>
     <?php include_once 'includes/templates/scripts.php' ?>
 
-    <!-- Paginas -->
-    <script src="js/pages/index.js" defer></script>
-
 </body>
 
 </html>

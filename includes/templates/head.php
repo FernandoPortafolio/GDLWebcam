@@ -22,7 +22,22 @@
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Oswald:wght@300;400;700&family=PT+Sans:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-    <link rel="stylesheet" href="css/lightbox.css">
+    
+
+    <?php
+       $archivo = basename($_SERVER['PHP_SELF']);
+       $pagina = str_replace('.php', '', $archivo);
+       switch ($pagina) {
+           case 'invitados':
+                echo '<link rel="stylesheet" href="css/colorbox.css">';
+               break;
+
+           case 'conferencia':
+                echo '<link rel="stylesheet" href="css/lightbox.css">';
+               break;
+       }
+    ?>
+
     <link rel="stylesheet" href="css/main.css">
 
     <meta name="theme-color" content="#fafafa">
