@@ -11,8 +11,32 @@
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 <!-- Plugin para la galeria de fotos -->
 <script src="js/plugins/lightbox.js"></script>
+<script src="js/plugins/jquery.colorbox.js"></script>
+
 
 <script src="js/pages/header.js"></script>
+
+<!-- scripts de cada pagina -->
+<?php
+   $archivo = basename($_SERVER['PHP_SELF']);
+   $pagina = str_replace('.php', '', $archivo);
+   switch ($pagina) {
+    case 'index':
+        echo '<script src="js/pages/index.js" defer></script>';
+        break;
+
+    case 'registro':
+        echo '<script src="js/pages/registro.js" defer></script>';
+        break;
+
+    case 'invitados':
+        echo '<script src="js/pages/invitados.js" defer></script>';
+        break;
+
+    case 'conferencia':
+        echo '<script src="js/pages/conferencia.js" defer></script>';
+    }
+?>
 
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <script>
