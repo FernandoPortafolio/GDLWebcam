@@ -286,6 +286,9 @@ nav.redes-sociales a {
     position: relative;
   }
 }
+.navegacion .activo {
+  border-bottom: 7px solid var(--primary-color);
+}
 /* =============================================== */
 
 /* ====================== BARRA DE NAVEGACION=============== */
@@ -323,7 +326,6 @@ nav.redes-sociales a {
 
 .navegacion a {
   font-family: var(--second-font);
-  text-decoration: none;
   color: white;
   font-size: 2rem;
   text-transform: uppercase;

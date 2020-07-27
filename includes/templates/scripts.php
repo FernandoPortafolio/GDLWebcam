@@ -23,6 +23,7 @@
    switch ($pagina) {
     case 'index':
         echo '<script src="js/pages/index.js" defer></script>';
+        echo '<script src="js/pages/invitados.js" defer></script>';
         break;
 
     case 'registro':

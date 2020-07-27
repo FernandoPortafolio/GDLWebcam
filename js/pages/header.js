@@ -22,4 +22,10 @@ $(function () {
     e.preventDefault();
     $('.navegacion').slideToggle();
   });
+
+  //agregar apuntador de la pagina actual
+  $('body.conferencia .navegacion a:contains("Conferencia")').addClass('activo');
+  $('body.calendario .navegacion a:contains("Calendario")').addClass('activo');
+  $('body.invitados .navegacion a:contains("Invitados")').addClass('activo');
+  $('body.registro .navegacion a:contains("Reservaciones")').addClass('activo');
 });

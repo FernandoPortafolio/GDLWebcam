@@ -22,12 +22,13 @@
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Oswald:wght@300;400;700&family=PT+Sans:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-    
+
 
     <?php
        $archivo = basename($_SERVER['PHP_SELF']);
        $pagina = str_replace('.php', '', $archivo);
        switch ($pagina) {
+           case 'index':
            case 'invitados':
                 echo '<link rel="stylesheet" href="css/colorbox.css">';
                break;
@@ -42,3 +43,6 @@
 
     <meta name="theme-color" content="#fafafa">
 </head>
+
+<!-- Se crea una clase en el body para con jquery detectar en que pagina esta y colorearlo en la barra de navegacion -->
+<body class="<?php echo $pagina; ?>">
