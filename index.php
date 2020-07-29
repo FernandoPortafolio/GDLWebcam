@@ -83,7 +83,7 @@
                 <!-- Crear el menu del programa -->
                 <!-- Ciclo para recorrer cada categoria -->
                 <?php foreach ($categorias as $key => $categoria) {?>
-                
+
                 <ul id="<?php echo strtolower($key); ?>" class="info-curso">
 
                     <!-- Ciclo para recorrer cada evento de una categoria -->
@@ -92,7 +92,7 @@
                         <h3><?php echo $evento['evento']; ?></h3>
                         <p><i class="far fa-clock"></i><?php echo $evento['hora']; ?></p>
                         <p><i class="far fa-calendar"></i> <?php echo $evento['fecha']; ?> </p>
-                        <p><i class="fas fa-user"></i> <?php echo $evento['nombre'].' '.$evento['invitado']; ?> </p>
+                        <p><i class="fas fa-user"></i> <?php echo $evento['nombre'].' '.$evento['apellido']; ?> </p>
                     </li>
                     <?php } //Fin del ciclo foreach?>
 
@@ -106,11 +106,6 @@
 </section>
 
 <?php include_once 'includes/templates/invitados.php'; ?>
-
-<!-- Consultas para hacer los conteos  -->
-<?php
-   
-?>
 
 <seccion class="parallax contador center-content">
     <div class="contenedor">
@@ -251,11 +246,8 @@
     </div>
 </div>
 
-<?php include_once 'includes/templates/footer.php'; ?>
-<?php include_once 'includes/templates/scripts.php'; ?>
-
 <!-- Cerrar conexion a BD -->
 <?php $conn->close(); ?>
-</body>
 
-</html>
+<?php include_once 'includes/templates/footer.php'; ?>
+<?php include_once 'includes/templates/scripts.php'; ?>

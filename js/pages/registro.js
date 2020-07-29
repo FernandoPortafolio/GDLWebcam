@@ -36,6 +36,10 @@
     txtEmail.addEventListener('blur', validarCampos);
     txtEmail.addEventListener('blur', validarEmail);
 
+    //deshabilitar el boton registro
+    btnRegistro.disabled = true;
+    btnRegistro.classList.add('disabled');
+
     function validarCampos(event) {
       if (this.value === '') {
         divError.style.display = 'block';
@@ -102,6 +106,17 @@
           divListaProductos.innerHTML += `${producto} <br>`;
         }
         divSuma.innerHTML = `$${total.toFixed(2)}`;
+
+        if (total !== 0) {
+          //habilitar el boton de registro
+          btnRegistro.disabled = false;
+          btnRegistro.classList.remove('disabled');
+
+          //asignar el total al campo oculto
+          document.getElementById('total').value = total;
+        }else {
+          alert('No has comprado nada');
+        }
       }
     }
 

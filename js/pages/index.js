@@ -41,7 +41,7 @@ $(function () {
     1200
   );
   $('.resumen-evento li:nth-child(2) .numero').animateNumber(
-    { number: 15 },
+    { number: 40 },
     2000
   );
   $('.resumen-evento li:nth-child(3) .numero').animateNumber(
@@ -49,7 +49,7 @@ $(function () {
     1200
   );
   $('.resumen-evento li:nth-child(4) .numero').animateNumber(
-    { number: 9 },
+    { number: 17 },
     1200
   );
 

@@ -1275,6 +1275,9 @@ nav.redes-sociales a {
   align-items: center;
   text-align: center;
 }
+.disabled {
+  filter: opacity(0.3);
+}
 
 /* Clases para flex */
 .flex {
