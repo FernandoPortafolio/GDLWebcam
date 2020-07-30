@@ -216,7 +216,7 @@
     <div class="contenido contenedor">
         <p>Registrate al Newsletter</p>
         <h3>GdlWebcamp</h3>
-        <a href="registro.html" class="btn btn-white btn-transparent">Registro</a>
+        <a href="#mc_embed_signup" class="btn-newsletter btn btn-white btn-transparent">Registro</a>
     </div>
 </div>
 

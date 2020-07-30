@@ -16,6 +16,8 @@
 
         <?php while ($row = $result->fetch_assoc()) { ?>
         <li class="invitado">
+        <!-- La etiqueta a debe tener la misma clase que el popup con el html 
+        para que colorbox haga la relacion -->
             <a class="descripcion" href="#invitado<?php echo $row['id_invitado']; ?>">
                 <img src="<?php echo 'img/'.$row['url_foto']; ?>" alt="Imagen del Invitado">
             </a>
