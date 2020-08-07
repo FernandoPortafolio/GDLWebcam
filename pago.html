@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/5.0.0/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Pago</title>
+</head>
+
+<body class="pago">
+    <div class="contenedor">
+        <h1>¡Paso Final!</h1>
+        <hr>
+        <p class="t1">Estas a punto de pagar con paypal la cantidad de:</p>
+        <p class="precio">$100.00</p>
+        <p>Los productos podrán ser descargados una vez que se procese el pago</p>
+        <p class="aclaracion">Para aclaraciones aclaraciones@gmail.com</p>
+        <div id="paypal-button-container"></div>
+    </div>
+    <p class="marca">Cafe Buen Gusto 2018</p>
+
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=Afc5sJoHxQIsF9L7U2XbR-sjdx9BUjGK2sS552A-gmMtFcbMS4RRRhZWmGq7DSnPGOn9Zx7OGAM6MHeH&currency=MXN"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+        </script>
+
+    <script src="paypal.js"></script>
+</body>
+
+</html>

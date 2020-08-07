@@ -4,7 +4,7 @@
 
 <section class="seccion contenedor">
     <h2 class="separador justify-center">Registro de Usuarios</h2>
-    <form id="registro" class="registro" action="validar_registro.php" method="POST">
+    <form id="registro" class="registro" action="pagar.php" method="POST">
 
         <div id="datos_usuario" class="registro caja flex-resp">
             <div class="campo">

@@ -64,6 +64,10 @@
       }
     }
 
+    /**
+     * calcularMontos.
+     * Calcula el total a pagar y lo muestra en un pequeño div 
+     */
     function calcularMontos(event) {
       event.preventDefault();
       if (comboRegalo.value === '') {
@@ -120,6 +124,10 @@
       }
     }
 
+    /**
+     * mostrarDias.
+     * Oculta o muestra los paquetes dependiendo de los boletos que seleccione el usuario
+     */
     function mostrarDias() {
       var boletosDia = parseInt(nmbPaseDia.value, 10) || 0;
       var boletosDosDias = parseInt(nmbPaseDosDias.value, 10) || 0;

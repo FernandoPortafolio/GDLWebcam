@@ -36,6 +36,7 @@
 
     case 'conferencia':
         echo '<script src="js/pages/conferencia.js" defer></script>';
+        break;
     }
 ?>
 
