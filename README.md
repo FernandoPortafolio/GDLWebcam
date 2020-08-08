@@ -10,4 +10,4 @@ Pagina web sobre un evento. En ella se estudian variedad de temas como.
 - Animaciones basicas en las imagenes.
 - Uso de librerias como lightbox.js y colorbox.js para crear galerias, countdown.js para una cuenta regresiva, lettering.js para crear titulos atractivos, animateNumber.js para animar numeros. 
 - Efecto parallax en las paginas web. 
-- Integracion de paypal para los pagos. 
+- Integracion de paypal para los pagos con una integracion server-side mediante el SDK [Paypal-PHP-SDK](https://github.com/paypal/PayPal-PHP-SDK)
