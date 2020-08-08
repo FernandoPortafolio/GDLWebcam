@@ -37,6 +37,8 @@ $id_registro = $ps->insert_id;
 $ps->close();
 $conn->close();
 
+require 'includes/paypal_conf.php';
+
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
@@ -46,8 +48,6 @@ use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Exception\PayPalConnectionException;
-
-require 'includes/paypal_conf.php';
 
 //Se crea la entidad comprador
 $compra = new Payer();
@@ -107,8 +107,8 @@ $transaccion->setAmount($cantidad)
 
 // //Definir las rutas de direccion. Son requeridas
 $redireccionar = new RedirectUrls();
-$redireccionar->setReturnUrl(URL_SITIO.'/pago_finalizado.php?exito=true&id_pago='.$id_registro)
-              ->setCancelUrl(URL_SITIO.'/pago_finalizado.php?exito=false&id_pago='.$id_registro);
+$redireccionar->setReturnUrl(URL_SITIO.'/pago_finalizado.php?id_pago='.$id_registro)
+              ->setCancelUrl(URL_SITIO.'/pago_finalizado.php?id_pago='.$id_registro);
 
 // //Procesar el pago
 $pago = new Payment();

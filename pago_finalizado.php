@@ -1,16 +1,33 @@
-<?php include_once 'includes/templates/head.php'; ?>
-<?php include_once 'includes/templates/header.php'; ?>
+<?php
+    include_once 'includes/templates/head.php';
+    include_once 'includes/templates/header.php';
+    require 'includes/paypal_conf.php';
+    use PayPal\Api\Payment;
+    use PayPal\Api\PaymentExecution;
+
+    ?>
 
 <section class="seccion contenedor">
     <h2 class="separador justify-center">Pago Finalizado</h2>
 
     <?php
-       $resultado = $_GET['exito'];
-       $paymentId = $_GET['paymentId'];
        $id_pago = (int) $_GET['id_pago'];
        $pagado = 1;
 
-       if ($resultado == 'true') {
+       //Estas variables las manda Paypal en automatico
+       $paymentId = $_GET['paymentId'];
+       $payerID = $_GET['PayerID'];
+
+       //Peticion a REST API de Paypal
+       $payment = Payment::get($paymentId, $apiContext);
+       $execution = new PaymentExecution();
+       $execution->setPayerId($payerID);
+
+       //Resultado tiene informacion de la transaccion
+       $result = $payment->execute($execution, $apiContext);
+       $respuesta = $result->transactions[0]->related_resources[0]->sale->state;
+
+       if ($respuesta == 'completed') {
            echo '<div class="resultado correcto">';
            echo 'El Pago se realizo correctamente<br>';
            echo 'El ID es: '.$paymentId;
