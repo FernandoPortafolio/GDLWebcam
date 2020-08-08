@@ -1050,6 +1050,20 @@ nav.redes-sociales a {
   display: block;
   font-weight: bold;
 }
+
+.resultado {
+  text-align: center;
+  padding: 1rem;
+  color: white;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+.correcto {
+  background-color: rgb(2, 173, 2);
+}
+.error {
+  background-color: red;
+}
 /* =============================================== */
 
 /* ==========================================================================
