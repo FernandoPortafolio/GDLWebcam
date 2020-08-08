@@ -1,35 +1,35 @@
 <?php
 if (isset($_POST['submit'])) {
+    include_once 'includes/functions/funciones.php';
+    require_once 'includes/functions/db_conection.php';
+
+    $id_registro = $_POST['id_registro'];
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $email = $_POST['email'];
+    $fecha = date('Y-m-d H:i:s');
     $regalo = $_POST['regalo'];
     $total = $_POST['total'];
-    $fecha = date('Y-m-d H:i:s');
 
-    //pedidos
+    //pedido
     $boletos = $_POST['boletos'];
     $camisas = $_POST['pedido_camisas'];
     $etiquetas = $_POST['pedido_etiquetas'];
-    include_once 'includes/functions/funciones.php';
     $pedido = productos_to_json($boletos, $camisas, $etiquetas);
 
     //eventos
     $registro = $_POST['registro'];
     $eventos = eventos_to_json($registro);
 
-    //Realizar la conexion a la base de datos
-    require_once 'includes/functions/db_conection.php';
-
     $sql = 'INSERT INTO 
     registro(nombre, apellido, email, fecha, pases_articulos, talleres, total_pago, id_regalo) 
     VALUES (?,?,?,?,?,?,?,?)';
-// $ps = $conn->prepare($sql);
-    // $ps->bind_param('ssssssdi', $nombre, $apellido, $email, $fecha, $pedido, $eventos, $total, $regalo);
-    // $ps->execute();
-    // $ps->close();
-    // $conn->close();
 
+    $ps = $conn->prepare($sql);
+    $ps->bind_param('ssssssdi', $nombre, $apellido, $email, $fecha, $pedido, $eventos, $total, $regalo);
+    $ps->execute();
+    $ps->close();
+    $conn->close();
 } else {
     die('Hubo un error');
 }
@@ -42,10 +42,65 @@ if (isset($_POST['submit'])) {
     <h2 class="separador justify-center">Resumen Registro</h2>
 
     <?php
-           echo var_dump($nombre);
-           echo var_dump($apellido);
-           echo var_dump($pedido);
+
+        //convertimos en un array asociativo el array $boletos
+        $total_boletos = array_combine(['un_dia', 'completo', 'dos_dias'], $_POST['boletos']);
+
     ?>
+
+    <div class="pago">
+        <hr>
+        <h3>Estas a punto de pagar con paypal la cantidad de:</h3>
+        <p class='precio'>$<?php echo number_format($total, 2); ?></p>
+        <p>Resumen de tus productos:</p>
+
+        <!-- Boletos -->
+        <?php foreach ($total_boletos as $key => $boleto):?>
+        <?php if ($key == 'un_dia' && $boleto > 0): ?>
+        <p><?php echo $boleto; ?> Pase por un día</p>
+        <?php endif; //Fin del if?>
+        <?php if ($key == 'dos_dias' && $boleto > 0): ?>
+        <p><?php echo $boleto; ?> Pase por dos días</p>
+        <?php endif; //Fin del if?>
+        <?php if ($key == 'completo' && $boleto > 0): ?>
+        <p><?php echo $boleto; ?> Pase completo</p>
+        <?php endif; //Fin del if?>
+        <?php endforeach; //Fin del ciclo foreach?>
+
+        <!-- Camisas -->
+        <?php if ($camisas > 0): ?>
+        <p><?php echo $camisas; ?> Camisas</p>
+        <?php endif; //Fin del if?>
+
+        <!-- Etiquetas -->
+        <?php if ($etiquetas > 0): ?>
+        <p><?php echo $etiquetas; ?> Etiquetas</p>
+        <?php endif; //Fin del if?>
+
+        <!-- REGALO -->
+        <?php
+           switch ($regalo) {
+                case 1:
+                echo '<p class="regalo"><span>Regalo:</span> Pulsera</p>';
+                    break;
+                case 2:
+                echo '<p class="regalo"><span>Regalo:</span> Etiquetas</p>';
+                    break;
+                case 3:
+                echo '<p class="regalo"><span>Regalo:</span> Plumas</p>';
+                    break;
+           }
+        ?>
+        <p class='fw-bold'>Para aclaraciones aclaraciones@gmail.com</p>
+    </div>
+
+    <!-- Calcular el desgloce del total -->
+    <?php
+       $impuestos = number_format($total * 0.16, 2);
+       $handling = number_format(3.0, 2);
+       $subtotal = number_format($total - $impuestos - $handling, 2);
+    ?>
+
     <div id="paypal-button-container"></div>
 
     <!-- Script de Paypal SDK -->
@@ -55,7 +110,6 @@ if (isset($_POST['submit'])) {
     </script>
 
     <script>
-
     paypal
         .Buttons({
             style: {
@@ -82,7 +136,7 @@ if (isset($_POST['submit'])) {
                      * Cada unidad de compra representa un pedido total o parcial que el pagador pretende comprar al beneficiario.
                      */
                     purchase_units: [{
-                        description: 'Compra de productos a GDLWebcam: $<?php echo $total ?>',
+                        description: 'Compra de productos a GDLWebcam: $<?php echo $total; ?>',
                         /**
                          *El monto total del pedido con un desglose opcional que proporciona detalles,
                          *como el monto total del artículo, el monto total del impuesto, el envío,
@@ -90,42 +144,22 @@ if (isset($_POST['submit'])) {
                          */
                         amount: {
                             currency_code: 'MXN',
-                            value: '100',
+                            value: '<?php echo $total; ?>',
                             breakdown: {
                                 // El subtotal sin todo el desgloce
                                 item_total: {
                                     currency_code: 'MXN',
-                                    value: '80',
-                                },
-                                // La tarifa de envío
-                                shipping: {
-                                    currency_code: 'MXN',
-                                    value: '5',
+                                    value: '<?php echo $subtotal; ?>',
                                 },
                                 // La tarifa de manejo
                                 handling: {
                                     currency_code: 'MXN',
-                                    value: '0.2',
+                                    value: '<?php echo $handling; ?>',
                                 },
                                 // El impuesto total.
                                 tax_total: {
                                     currency_code: 'MXN',
-                                    value: '12.8',
-                                },
-                                // La tarifa del seguro
-                                insurance: {
-                                    currency_code: 'MXN',
-                                    value: '2',
-                                },
-                                // El descuento de envío
-                                shipping_discount: {
-                                    currency_code: 'MXN',
-                                    value: '0',
-                                },
-                                // El descuento para todos los artículos.
-                                discount: {
-                                    currency_code: 'MXN',
-                                    value: '0',
+                                    value: '<?php echo $impuestos; ?>',
                                 },
                             },
                         },
@@ -133,16 +167,20 @@ if (isset($_POST['submit'])) {
                 });
             },
             onApprove: function(data, actions) {
+                console.log('Actions: ', actions);
+                console.log('Data: ', data);
+
                 // This function captures the funds from the transaction.
                 return actions.order.capture().then(function(details) {
                     // This function shows a transaction success message to your buyer.
                     console.log(details);
-                    alert('Transaction completed by ' + details.payer.name.given_name);
+                    alert('Pago completado por ' + details.payer.name.given_name);
                 });
             },
         })
         .render('#paypal-button-container');
     </script>
+
 </section>
 
 
