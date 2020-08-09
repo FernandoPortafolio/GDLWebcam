@@ -851,7 +851,7 @@ nav.redes-sociales a {
  ================================================= */
 
 /* ====================== RESERVACIONES =============== */
-.registro h3 {
+.registro h3:not([class='footer-h3'])  {
   text-align: center;
   text-transform: uppercase;
   margin: 2rem 0 0 0;
