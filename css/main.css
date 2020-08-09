@@ -984,7 +984,7 @@ nav.redes-sociales a {
 /* =============================================== */
 
 /* ====================== CALENDARIO =============== */
-.calendario h3 {
+.calendario h3:not([class='footer-h3']) {
   background-color: var(--primary-color);
   color: white;
   text-align: center;
