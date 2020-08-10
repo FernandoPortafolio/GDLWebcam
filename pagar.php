@@ -89,7 +89,6 @@ $subtotal = round($total - $impuestos, 2);
 
 $detalles = new Details();
 $detalles->setSubtotal($subtotal)
-         ->setHandlingFee($handling)
          ->setTax($impuestos);
 
 //total a pagar con todo y desgloce
