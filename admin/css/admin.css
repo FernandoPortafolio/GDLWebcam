@@ -1,3 +1,7 @@
 .nav-treeview > li {
     margin-left: 20px;
 }
+
+.login-page .main-footer {
+    display: none;
+}

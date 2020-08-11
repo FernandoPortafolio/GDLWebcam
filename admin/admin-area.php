@@ -1,3 +1,4 @@
+<?php include_once './functions/sessiones.php'; ?>
 <?php include_once './templates/header.php'; ?>
 <?php include_once './templates/barra.php'; ?>
 <?php include_once './templates/drawer.php'; ?>

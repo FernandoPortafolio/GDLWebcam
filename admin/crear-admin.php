@@ -1,6 +1,8 @@
+<?php include_once './functions/sessiones.php'; ?>
 <?php include_once './templates/header.php'; ?>
 <?php include_once './templates/barra.php'; ?>
 <?php include_once './templates/drawer.php'; ?>
+<?php include_once './functions/funciones.php'; ?>
 
 
 <!-- Content Wrapper. Contains page content -->
@@ -18,11 +20,8 @@
     </section>
 
 
-
-
     <!-- Main content -->
     <section class="content">
-
         <div class="row">
             <div class="col-md-8">
                 <!-- Default box -->
@@ -39,33 +38,35 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" method="POST" action="#" name="crear_admin">
                                 <div class="card-body">
                                     <div class="form-group row">
-                                        <label for="inputName" class="col-sm-2 col-form-label">Tu Nombre: </label>
+                                        <label for="inputName" class="col-sm-2 col-form-label">Tu
+                                            Nombre:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputName" placeholder="Nombre">
+                                            <input required type="text" class="form-control" id="inputName"
+                                                placeholder="Nombre completo" name="name">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputUser" class="col-sm-2 col-form-label">Usuario:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputUser"
-                                                placeholder="Usuario">
+                                            <input required type="text" class="form-control" id="inputUser" placeholder="Usuario"
+                                                name="user">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputPassword3" class="col-sm-2 col-form-label">Contraseña:</label>
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña:</label>
                                         <div class="col-sm-10">
-                                            <input type="password" class="form-control" id="inputPassword3"
-                                                placeholder="Password">
+                                            <input required type="password" class="form-control" id="inputPassword"
+                                                placeholder="Password" name="password">
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-info">Sign in</button>
-                                    <button type="submit" class="btn btn-default float-right">Cancel</button>
+                                    <input type="hidden" value="1" name="crear-admin">
+                                    <button type="submit" class="btn btn-info" name="crear">Añadir</button>
                                 </div>
                                 <!-- /.card-footer -->
                             </form>
@@ -77,8 +78,6 @@
                 <!-- /.card -->
             </div>
         </div>
-
-
 
     </section>
     <!-- /.content -->
