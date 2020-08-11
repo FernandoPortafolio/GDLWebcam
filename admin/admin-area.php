@@ -1,6 +1,6 @@
 <?php include_once './templates/header.php'; ?>
 <?php include_once './templates/barra.php'; ?>
-<?php include_once './templates/navegacion.php'; ?>
+<?php include_once './templates/drawer.php'; ?>
 
 
 <!-- Content Wrapper. Contains page content -->
@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Blank Page</h1>
+                    <h1>Home</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
