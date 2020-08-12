@@ -22,7 +22,7 @@
                     <p class="login-box-msg">Sign in to start your session</p>
 
                     <!-- Formulario de login -->
-                    <form action="#" method="post" name="login-admin-form">
+                    <form action="#" method="post" name="login-admin">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="usuario" placeholder="Usuario">
                             <div class="input-group-append">
@@ -41,7 +41,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <input type="hidden" name="login-admin" value="1">
+                                <input type="hidden" name="accion" value="login">
                                 <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                             </div>
                             <!-- /.col -->

@@ -18,4 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- Sobreescribir algunos estilos por propios-->
     <link rel="stylesheet" href="./css/admin.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="./css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="./css/responsive.bootstrap4.min.css">
 </head>

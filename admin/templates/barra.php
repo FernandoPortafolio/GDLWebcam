@@ -12,7 +12,7 @@
                     <a href="../index.php" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Ajustes</a>
+                    <a href="editar-admin.php?id=<?php echo $_SESSION['id_admin']; ?>" class="nav-link">Ajustes</a>
                 </li>
             </ul>
 
@@ -32,7 +32,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" role="button" id="btn-exit">
+                    <a class="nav-link" role="button" href="login.php?cerrar_sesion=true">
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </li>

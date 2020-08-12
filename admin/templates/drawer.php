@@ -15,7 +15,7 @@
                 <img src="./img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Fernando Acosta</a>
+                <a href="#" class="d-block"><?php echo $_SESSION['nombre']; ?></a>
             </div>
         </div>
 
@@ -133,6 +133,8 @@
                         </li>
                     </ul>
                 </li>
+
+                <?php if ($_SESSION['nivel'] == 1): ?>
                 <li class="nav-item has-treeview">
                     <a href="../gallery.html" class="nav-link">
                         <i class="nav-icon fa fa-user" aria-hidden="true"></i>
@@ -143,7 +145,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin-list.php" class="nav-link">
                                 <i class="fa fa-list nav-icon"></i>
                                 <p>Ver Todos</p>
                             </a>
@@ -156,6 +158,8 @@
                         </li>
                     </ul>
                 </li>
+                <?php endif; //Fin del if?>
+
                 <li class="nav-item has-treeview">
                     <a href="../gallery.html" class="nav-link">
                         <i class="nav-icon fa fa-comment" aria-hidden="true"></i>
