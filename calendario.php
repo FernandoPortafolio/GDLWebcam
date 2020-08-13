@@ -9,7 +9,7 @@
             //Realizar la conexion a la base de datos
             require_once 'includes/functions/db_conection.php';
             $sql = 'select id_evento,
-                 e.nombre as evento,
+                 evento,
                  icono,
                  fecha,
                  hora,
@@ -87,4 +87,3 @@
 
 <?php include_once 'includes/templates/footer.php'; ?>
 <?php include_once 'includes/templates/scripts.php'; ?>
-

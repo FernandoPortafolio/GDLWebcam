@@ -23,6 +23,10 @@
     <link rel="stylesheet" href="./css/tempusdominus-bootstrap-4.min.css">
     <!-- Select2 -->
     <link rel="stylesheet" href="./css/select2.min.css">
+    <!-- Bootstrap-Iconpicker -->
+    <link rel="stylesheet" href="./css/bootstrap-iconpicker.min.css" />
+
     <!-- Sobreescribir algunos estilos por propios-->
     <link rel="stylesheet" href="./css/admin.css">
+
 </head>

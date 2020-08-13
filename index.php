@@ -42,7 +42,7 @@
                 <nav class="menu-programa">
                     <?php while ($row = $result->fetch_assoc()) {?>
                     <a href="<?php echo '#'.strtolower($row['categoria']); ?>">
-                        <i class="<?php echo 'fa'.' '.$row['icono']; ?>"></i><?php echo $row['categoria']; ?>
+                        <i class="<?php echo $row['icono']; ?>"></i><?php echo $row['categoria']; ?>
                     </a>
                     <?php } ?>
                 </nav>
@@ -53,7 +53,7 @@
                     for ($i = 1; $i <= 3; ++$i) {
                         $sql = 'SELECT id_evento,
                                categoria,
-                               e.nombre as evento,
+                               evento,
                                fecha,
                                hora,
                                i.nombre,

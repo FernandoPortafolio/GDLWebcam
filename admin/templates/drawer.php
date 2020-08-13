@@ -65,7 +65,7 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="../gallery.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-book" aria-hidden="true"></i>
                         <p>
                             Categorias
@@ -74,13 +74,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="lista-categoria.php" class="nav-link">
                                 <i class="fa fa-list nav-icon"></i>
                                 <p>Ver Todos</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="crear-categoria.php" class="nav-link">
                                 <i class="fa fa-plus-circle nav-icon"></i>
                                 <p>Agregar</p>
                             </a>
@@ -88,7 +88,7 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="../gallery.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-user-circle" aria-hidden="true"></i>
                         <p>
                             Invitados
@@ -111,7 +111,7 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="../gallery.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-address-card" aria-hidden="true"></i>
                         <p>
                             Registrados
@@ -136,7 +136,7 @@
 
                 <?php if ($_SESSION['nivel'] == 1): ?>
                 <li class="nav-item has-treeview">
-                    <a href="../gallery.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-user" aria-hidden="true"></i>
                         <p>
                             Administradores
@@ -161,7 +161,7 @@
                 <?php endif; //Fin del if?>
 
                 <li class="nav-item has-treeview">
-                    <a href="../gallery.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-comment" aria-hidden="true"></i>
                         <p>
                             Testimoniales

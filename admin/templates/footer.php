@@ -29,6 +29,9 @@
 <script src="./js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Select2 -->
 <script src="./js/select2.full.min.js"></script>
+<!-- Bootstrap-Iconpicker Bundle -->
+<script type="text/javascript" src="./js/bootstrap-iconpicker.bundle.min.js"></script>
+
 <!-- Scripts en comun -->
 <script src="./js/app.js"></script>
 <!-- Mis propios scripts -->

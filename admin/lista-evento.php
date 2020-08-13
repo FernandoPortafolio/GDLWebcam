@@ -56,7 +56,7 @@
                                         <td><?php echo $row['hora']; ?></td>
                                         <td><?php echo $row['categoria']; ?></td>
                                         <td><?php echo $row['invitado']; ?></td>
-                                        <td>
+                                        <td class="text-center">
                                             <a href="editar-evento.php?id=<?php echo $row['id_evento']; ?>"
                                                 class="btn bg-orange btn-flat m-lg-2">
                                                 <i class="fa fa-pen text-white"></i>

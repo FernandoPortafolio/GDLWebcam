@@ -12,7 +12,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Lista de Administradores</h1>
+                    <h1>Lista de Categorias</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -26,33 +26,33 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Administra los usuarios desde este panel</h3>
+                            <h3 class="card-title">Administra las categorias de eventos desde este panel</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="tabla" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Usuario</th>
-                                        <th>Nombre</th>
-                                        <th>Acciones</th>
+                                        <th>Categoria</th>
+                                        <th>Icono</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                       $sql = 'SELECT id_admin, usuario, nombre, password from admin';
+                                       $sql = 'SELECT id_categoria,categoria,icono from categoria';
                                        $resultado = $conn->query($sql);
                                     ?>
                                     <?php while ($row = $resultado->fetch_assoc()):?>
-                                    <tr class="text-center">
-                                        <td><?php echo $row['usuario']; ?></td>
-                                        <td><?php echo $row['nombre']; ?></td>
-                                        <td>
-                                            <a href="editar-admin.php?id=<?php echo $row['id_admin']; ?>"
+                                    <tr>
+                                        <td><?php echo $row['categoria']; ?></td>
+                                        <td class="text-center icono"><i class="<?php echo $row['icono']; ?>"></i></td>
+                                        <td class="text-center">
+                                            <a href="editar-categoria.php?id=<?php echo $row['id_categoria']; ?>"
                                                 class="btn bg-orange btn-flat m-lg-2">
                                                 <i class="fa fa-pen text-white"></i>
                                             </a>
-                                            <a href="#" data-id="<?php echo $row['id_admin']; ?>" data-tipo="admin"
+                                            <a href="#" data-id="<?php echo $row['id_categoria']; ?>"
+                                                data-tipo="categoria"
                                                 class="btn bg-red btn-flat m-lg-2 borrar_registro">
                                                 <i class="fa fa-trash text-white"></i>
                                             </a>
@@ -66,9 +66,8 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Usuario</th>
-                                        <th>Nombre</th>
-                                        <th>Acciones</th>
+                                        <th>Categoria</th>
+                                        <th>Icono</th>
                                     </tr>
                                 </tfoot>
                             </table>

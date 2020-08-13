@@ -38,6 +38,11 @@ $(document).ready(function () {
     placeholder: 'Selecciona una opcion',
     allowClear: false,
     language: 'es',
-    width: 'element'
+    width: 'element',
+  });
+
+  //Bootstrap IconPicker, cambiar el texto del buscador al nombre del icono
+  $('#icono').on('change', function (e) {
+    $('#icono').iconpicker('setSearchText', e.icon);
   });
 });
