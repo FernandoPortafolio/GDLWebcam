@@ -1,7 +1,7 @@
 $(document).ready(function () {
   // page data table script
   $('#tabla').DataTable({
-    paging: true,
+    paging: false,
     lengthChange: false,
     searching: true,
     ordering: true,
@@ -21,5 +21,23 @@ $(document).ready(function () {
       emptytable: 'No hay registros',
       infoEmpty: '0 registros',
     },
+  });
+
+  //Date picker
+  $('#reservationdate').datetimepicker({
+    format: 'L',
+  });
+
+  //Timepicker
+  $('#timepicker').datetimepicker({
+    format: 'LT',
+  });
+
+  //Initialize Select2 Elements
+  $('.select2').select2({
+    placeholder: 'Selecciona una opcion',
+    allowClear: false,
+    language: 'es',
+    width: 'element'
   });
 });

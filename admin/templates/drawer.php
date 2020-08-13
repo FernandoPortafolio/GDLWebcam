@@ -51,13 +51,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="lista-evento.php" class="nav-link">
                                 <i class="fa fa-list nav-icon"></i>
                                 <p>Ver Todos</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="crear-evento.php" class="nav-link">
                                 <i class="fa fa-plus-circle nav-icon"></i>
                                 <p>Agregar</p>
                             </a>
@@ -68,7 +68,7 @@
                     <a href="../gallery.html" class="nav-link">
                         <i class="nav-icon fas fa-book" aria-hidden="true"></i>
                         <p>
-                            Categoria Eventos
+                            Categorias
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -145,7 +145,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="admin-list.php" class="nav-link">
+                            <a href="lista-admin.php" class="nav-link">
                                 <i class="fa fa-list nav-icon"></i>
                                 <p>Ver Todos</p>
                             </a>

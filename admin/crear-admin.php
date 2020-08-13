@@ -38,7 +38,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form class="form-horizontal" method="POST" action="#" name="crear_admin">
+                            <form class="form-horizontal" method="POST" action="modelo-admin.php" name="crear_admin" id="form_crear">
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <label for="inputName" class="col-sm-2 col-form-label">Tu

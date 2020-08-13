@@ -4,7 +4,7 @@ include_once './functions/funciones.php';
 
 $nombre = $_POST['name'];
 $usuario = $_POST['user'];
-$id_admin = $_POST['id_admin'];
+$id_admin = $_POST['id'];
 $password = $_POST['password'];
 $accion = $_POST['accion'];
 
@@ -22,7 +22,8 @@ if ($accion == 'crear') {
         if ($ps->execute()) {
             $respuesta = [
                 'status' => true,
-                'user' => $usuario,
+                'saved' => $usuario, //convencion de nombre saved propia para regresar lo guardado
+                'tipo' => 'admin',
             ];
         } else {
             throw new Exception($ps->error, $ps->errno);
@@ -56,8 +57,9 @@ if ($accion == 'editar') {
         if ($ps->execute()) {
             $respuesta = [
                 'status' => true,
-                'user' => $usuario,
-                'id_admin' => $id_admin,
+                'saved' => $usuario,
+                'id' => $id_admin,
+                'tipo' => 'admin',
             ];
         } else {
             throw new Exception($ps->error, $ps->errno);
@@ -83,8 +85,8 @@ if ($accion == 'eliminar') {
         if ($ps->execute()) {
             $respuesta = [
                 'status' => true,
-                'id_admin' => $id_admin,
-                'user' => $usuario,
+                'id' => $id_admin,
+                'tipo' => 'admin',
             ];
         } else {
             throw new Exception($ps->error, $ps->errno);

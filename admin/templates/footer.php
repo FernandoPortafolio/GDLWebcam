@@ -2,7 +2,8 @@
     <div class="float-right d-none d-sm-block">
         <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> Todos los Derechos Reservados.
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> Todos los Derechos
+    Reservados.
 </footer>
 
 </div>
@@ -23,10 +24,16 @@
 <script src="./js/dataTables.bootstrap4.min.js"></script>
 <script src="./js/dataTables.responsive.min.js"></script>
 <script src="./js/responsive.bootstrap4.min.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="./js/moment.min.js"></script>
+<script src="./js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Select2 -->
+<script src="./js/select2.full.min.js"></script>
 <!-- Scripts en comun -->
 <script src="./js/app.js"></script>
 <!-- Mis propios scripts -->
 <script src="./js/adminAjax.js"></script>
+
 </body>
 
 </html>

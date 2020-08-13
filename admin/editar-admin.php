@@ -1,6 +1,6 @@
 <?php
    if (!isset($_GET['id'])) {
-       header('Location:admin-list.php');
+       header('Location:lista-admin.php');
    }
 ?>
 <?php include_once './functions/sessiones.php'; ?>
@@ -49,7 +49,7 @@
                                $admin = $resultado->fetch_assoc();
                             ?>
                             <!-- form start -->
-                            <form class="form-horizontal" method="POST" action="#" name="editar_admin">
+                            <form class="form-horizontal" method="POST" action="modelo-admin.php" name="editar_admin" id="form_editar">
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <label for="inputName" class="col-sm-2 col-form-label">Tu
@@ -87,7 +87,7 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <input type="hidden" value="<?php echo $admin['id_admin']; ?>" name="id_admin">
+                                    <input type="hidden" value="<?php echo $admin['id_admin']; ?>" name="id">
                                     <input type="hidden" value="editar" name="accion">
                                     <button type="submit" class="btn btn-info" id="guardar">Guardar</button>
                                 </div>

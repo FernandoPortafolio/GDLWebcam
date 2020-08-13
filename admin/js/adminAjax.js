@@ -1,7 +1,12 @@
 $(function () {
-  //Formulario para crear un admin
+  //Formulario oara crear un admin, evento, etc. Todos lod formularios tienen el mismo ID
+  // para crear un flujo de funciones reutilizables.
+  if (document.querySelector('#form_crear')) {
+    document.querySelector('#form_crear').addEventListener('submit', guardar);
+  }
+
+  //Casos especifios del formulario para crear un admin
   if (document['crear_admin']) {
-    document['crear_admin'].addEventListener('submit', guardarAdmin);
     document['crear_admin'].inputRepPassword.addEventListener(
       'input',
       validatePassword
@@ -13,74 +18,53 @@ $(function () {
     document.querySelector('#guardar').disabled = true;
   }
 
+  //Formulario para editar un admin, evento, etc.
+  if (document.querySelector('#form_editar')) {
+    document.querySelector('#form_editar').addEventListener('submit', editar);
+  }
+
   //Formulario para editar un admin
   if (document['editar_admin']) {
-    document['editar_admin'].addEventListener('submit', editarAdmin);
     document['editar_admin'].inputRepPassword.addEventListener(
       'input',
       validatePassword
     );
   }
 
+  //boton para eliminar un registro. Se reutiliza para todos los vormularios
+  $('.borrar_registro').on('click', borrar);
+
   //formulario de login
   if (document['login-admin'])
     document['login-admin'].addEventListener('submit', login);
 
-  //boton para eliminar un registro. Se reutiliza para todos los tipos
-  $('.borrar_registro').on('click', function (e) {
-    e.preventDefault();
-    let id = $(this).attr('data-id');
-    let tipo = $(this).attr('data-tipo');
-    let user = $(this).parent().parent().children().eq(0).text();
-
-    alertConfirm().then(function (result) {
-      if (result) {
-        $.ajax({
-          type: 'POST',
-          data: {
-            id_admin: id,
-            user,
-            accion: 'eliminar',
-          },
-          url: `${tipo}-model.php`,
-          dataType: 'json',
-          success: function (resp) {
-            console.log(resp);
-            if (resp.status) {
-              alerta('success', 'Usuario eliminado correctamente', resp.user);
-              $(`[data-id="${resp.id_admin}"]`).parents('tr').remove();
-            } else
-              alerta('error', 'Ha ocurrido un error al eliminar al usuario');
-          },
-        });
-      }
-    });
-  });
 
   /**
-   * guardarAdmin.
-   * Guarda una administrador en la base de datos
-   * @return	void
+   * guardar.
+   * Hace una peticion AJAX al modelo correspondiente para guardar un registro y le manda los datos del formulario.
+   * El modelo se obtiene desde el atributo del formulario y con esto se crea una funcion reutilizable.
    */
-  function guardarAdmin(e) {
+  function guardar(e) {
     e.preventDefault();
     //esta funcion obtiene los valores de todos los componentes del formulario
     let datos = $(this).serializeArray();
     $.ajax({
       type: 'POST',
       data: datos,
-      url: 'admin-model.php',
+      url: $(this).attr('action'),
       dataType: 'json',
       success: function (resp) {
         console.log(resp);
         if (resp.status) {
-          alerta('success', 'Usuario creado correctamente', resp.user);
+          alerta('success', 'Exito al guardar', resp.saved).then(() => {
+            document.location = `lista-${resp.tipo}.php`;
+          });
         } else {
           //codigo de llave repetida que devuelve mysql
           var text =
             resp.errorno === 1062
               ? 'El usario que intentas registrar ya existe'
-              : 'Ha habido un error al agregar al usuario';
+              : 'Ha habido un error al guardar';
           alerta('error', text);
         }
       },
@@ -88,32 +72,68 @@ $(function () {
   }
 
   /**
-   * editarAdmin.
-   * Edita un administrador mediante AJAX
+   * editar.
+   * Hace una peticion AJAX al modelo correspondiente para editar un registro y le manda los datos del formulario.
+   * El modelo se obtiene desde el atributo del formulario y con esto se crea una funcion reutilizable.
    * @return	void
    */
-  function editarAdmin(e) {
+  function editar(e) {
     e.preventDefault();
     //esta funcion obtiene los valores de todos los componentes del formulario
     let datos = $(this).serializeArray();
     $.ajax({
       type: 'POST',
       data: datos,
-      url: 'admin-model.php',
+      url: $(this).attr('action'),
       dataType: 'json',
       success: function (resp) {
         console.log(resp);
         if (resp.status) {
-          alerta('success', 'Usuario editado correctamente', resp.user);
+          alerta('success', 'Edicion realizada', resp.saved).then(() => {
+            document.location = `lista-${resp.tipo}.php`;
+          });
         } else {
           //codigo de llave repetida que devuelve mysql
           var text =
             resp.errorno === 1062
               ? 'Este nombre de usuario ya existe'
-              : 'Ha habido un error al agregar al usuario';
+              : 'Ha habido un error al guardar';
           alerta('error', text);
         }
       },
+    });
+  }
+
+  /**
+   * borrar.
+   * Hace una peticion AJAX al modelo correspondiente para editar un registro y le manda los el id a eliminar.
+   * El modelo se forma con el atributo data-tipo del boton, que debe especificarse en el formulario
+   */
+  function borrar(e) {
+    e.preventDefault();
+    let id = $(this).attr('data-id');
+    let tipo = $(this).attr('data-tipo');
+
+    alertConfirm().then(function (result) {
+      if (result) {
+        $.ajax({
+          type: 'POST',
+          data: {
+            id,
+            accion: 'eliminar',
+          },
+          url: `modelo-${tipo}.php`,
+          dataType: 'json',
+          success: function (resp) {
+            console.log(resp);
+            if (resp.status) {
+              alerta('success', 'Elemento eliminado correctamente');
+              $(`[data-id="${resp.id}"]`).parents('tr').remove();
+            } else
+              alerta('error', 'Ha ocurrido un error al eliminar');
+          },
+        });
+      }
     });
   }
 
@@ -129,7 +149,7 @@ $(function () {
     $.ajax({
       type: 'POST',
       data: datos,
-      url: 'admin-model.php',
+      url: 'modelo-admin.php',
       dataType: 'json',
       success: function (resp) {
         console.log(resp);
@@ -164,7 +184,7 @@ $(function () {
   }
 
   function alerta(icon = 'success', text, title) {
-    Swal.fire({
+    return Swal.fire({
       icon,
       title,
       text,
