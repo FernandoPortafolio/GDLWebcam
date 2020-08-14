@@ -1,5 +1,5 @@
 $(function () {
-  //Formulario oara crear un admin, evento, etc. Todos lod formularios tienen el mismo ID
+  //Formulario para crear. Todos los formularios tienen el mismo ID
   // para crear un flujo de funciones reutilizables.
   if (document.querySelector('#form_crear')) {
     document.querySelector('#form_crear').addEventListener('submit', guardar);
@@ -18,7 +18,7 @@ $(function () {
     document.querySelector('#guardar').disabled = true;
   }
 
-  //Formulario para editar un admin, evento, etc.
+  //Formulario para editar.
   if (document.querySelector('#form_editar')) {
     document.querySelector('#form_editar').addEventListener('submit', editar);
   }
@@ -34,10 +34,23 @@ $(function () {
   //boton para eliminar un registro. Se reutiliza para todos los vormularios
   $('.borrar_registro').on('click', borrar);
 
+  //formulario para crear cuando este maneja archivos
+  if (document.querySelector('#form_crear_archivo')) {
+    document
+      .querySelector('#form_crear_archivo')
+      .addEventListener('submit', guardarConArchivo);
+  }
+
+  //formulario para editar cuando este maneja archivos
+  if (document.querySelector('#form_editar_archivo')) {
+    document
+      .querySelector('#form_editar_archivo')
+      .addEventListener('submit', editarConArchivo);
+  }
+
   //formulario de login
   if (document['login-admin'])
     document['login-admin'].addEventListener('submit', login);
-
 
   /**
    * guardar.
@@ -53,6 +66,44 @@ $(function () {
       data: datos,
       url: $(this).attr('action'),
       dataType: 'json',
+      success: function (resp) {
+        console.log(resp);
+        if (resp.status) {
+          alerta('success', 'Exito al guardar', resp.saved).then(() => {
+            document.location = `lista-${resp.tipo}.php`;
+          });
+        } else {
+          //codigo de llave repetida que devuelve mysql
+          var text =
+            resp.errorno === 1062
+              ? 'El usario que intentas registrar ya existe'
+              : 'Ha habido un error al guardar';
+          alerta('error', text);
+        }
+      },
+    });
+  }
+
+  /**
+   * guardar.
+   * Hace una peticion AJAX al modelo correspondiente para guardar un registro y le manda los datos del formulario.
+   * El modelo se obtiene desde el atributo del formulario y con esto se crea una funcion reutilizable
+   * La peticion AJAX cambia cuando se manda un archivo.
+   */
+  function guardarConArchivo(e) {
+    e.preventDefault();
+
+    var datos = new FormData(this);
+
+    $.ajax({
+      type: 'POST',
+      data: datos,
+      url: $(this).attr('action'),
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+      async: true,
+      cache: false,
       success: function (resp) {
         console.log(resp);
         if (resp.status) {
@@ -105,6 +156,42 @@ $(function () {
   }
 
   /**
+   * editar.
+   * Hace una peticion AJAX al modelo correspondiente para editar un registro y le manda los datos del formulario.
+   * El modelo se obtiene desde el atributo del formulario y con esto se crea una funcion reutilizable.
+   * @return	void
+   */
+  function editarConArchivo(e) {
+    e.preventDefault();
+    var datos = new FormData(this);
+    $.ajax({
+      type: 'POST',
+      data: datos,
+      url: $(this).attr('action'),
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+      async: true,
+      cache: false,
+      success: function (resp) {
+        console.log(resp);
+        if (resp.status) {
+          alerta('success', 'Edicion realizada', resp.saved).then(() => {
+            document.location = `lista-${resp.tipo}.php`;
+          });
+        } else {
+          //codigo de llave repetida que devuelve mysql
+          var text =
+            resp.errorno === 1062
+              ? 'Este nombre de usuario ya existe'
+              : 'Ha habido un error al guardar';
+          alerta('error', text);
+        }
+      },
+    });
+  }
+
+  /**
    * borrar.
    * Hace una peticion AJAX al modelo correspondiente para editar un registro y le manda los el id a eliminar.
    * El modelo se forma con el atributo data-tipo del boton, que debe especificarse en el formulario
@@ -129,8 +216,7 @@ $(function () {
             if (resp.status) {
               alerta('success', 'Elemento eliminado correctamente');
               $(`[data-id="${resp.id}"]`).parents('tr').remove();
-            } else
-              alerta('error', 'Ha ocurrido un error al eliminar');
+            } else alerta('error', 'Ha ocurrido un error al eliminar');
           },
         });
       }
